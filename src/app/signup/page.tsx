@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -31,7 +31,7 @@ useEffect( () => {
 const onSignUp =  async () =>{
   try {
     setLoading(true)
-    const response = await axios.put("/api/users/signup")
+    const response = await axios.put("/api/users/signup",user)
     console.log("SignUp success" , response.data)
     router.push("/login")
     
@@ -51,10 +51,10 @@ const onSignUp =  async () =>{
     <label htmlFor="username">username</label>
     <input 
     className="p-2 border border-gray-300 rounded-lg
-    mb-4 focus:outline-none focus:border-gray-600 text-black"
+    mb-4 focus:outline-none focus:border-gray-600 text-orange"
       id='username'
       type="text"
-      value={user.password}
+      value={user.username}
       onChange={(e) => setUser({...user ,username:
       e.target.value})}
       placeholder="username"
@@ -62,7 +62,7 @@ const onSignUp =  async () =>{
      <label htmlFor="email">email</label>
     <input 
     className="p-2 border border-gray-300 rounded-lg
-    mb-4 focus:outline-none focus:border-gray-600 text-black"
+    mb-4 focus:outline-none focus:border-gray-600 text-white"
       id='email'
       type="text"
       value={user.email}
@@ -73,7 +73,7 @@ const onSignUp =  async () =>{
      <label htmlFor="password">password</label>
     <input 
     className="p-2 border border-gray-300 rounded-lg
-    mb-4 focus:outline-none focus:border-gray-600 text-black"
+    mb-4 focus:outline-none focus:border-gray-600 text-white"
       id='password'
       type="password"
       value={user.password}
